@@ -3,6 +3,7 @@ debugger;
 
 /*
 import "./style.css";
+*/
 
 // FileSaver.js ->saveAs
 import "./lib/FileSaver.js";
@@ -16,7 +17,6 @@ console.log(w3);
 
 // JSON 데이터 호출하기
 import "./public/jsondata.js";
-*/
 
 var treedata = JSONDATA.treedata; // treedata
 var arr = JSONDATA.mastercode; // 주식마스터 데이터
@@ -30,7 +30,7 @@ let objJSON = {
   },
   data : 배열 데이터
   */
-  getJsonContent: function (option, data) {
+  getJsonContent: function(option, data) {
     function replacer(key, val) {
       if ((key + "").indexOf("pq_") === 0) {
         return undefined;
@@ -45,14 +45,14 @@ let objJSON = {
           option.nopqdata ? replacer : null,
           option.nopretty ? null : 2
         );
-  },
+  }
 };
 
 // 데이터 저장 버튼 선택시 treedata를 json 파일로 저장하는 기능
 // 참고 사이트
 // https://github.com/eligrey/FileSaver.js
 let saveBtn = document.getElementById("save");
-saveBtn.addEventListener("click", function (evt) {
+saveBtn.addEventListener("click", function(evt) {
   console.log("변환전==>", JSON.stringify(treedata, null, 2));
 
   let opt = { nostringify: false, nopqdata: true, nopretty: false },
@@ -153,7 +153,7 @@ saveBtn.addEventListener("click", function (evt) {
 
 var ul = document.getElementById("find");
 // 키 입력시에 처리부분
-document.getElementById("txt").addEventListener("keyup", function () {
+document.getElementById("txt").addEventListener("keyup", function() {
   while (ul.firstChild) {
     ul.removeChild(ul.firstChild);
   }
@@ -165,7 +165,7 @@ document.getElementById("txt").addEventListener("keyup", function () {
   search1 = search1.toUpperCase();
 
   // 문자열 검색 || 초성검색
-  let arList = arr.filter(function (item) {
+  let arList = arr.filter(function(item) {
     return (
       item.code.indexOf(search) == 0 || // 종목코드 검색
       item.name.toUpperCase().includes(search) || // 실제 데이터 검색
@@ -175,7 +175,7 @@ document.getElementById("txt").addEventListener("keyup", function () {
   console.log("arList==>", arList);
 
   // 검색결과 ul 아래에 li 로 추가
-  arList.forEach(function (item) {
+  arList.forEach(function(item) {
     var li = document.createElement("li");
     li.innerHTML = item.name + "--- <B>" + item.code;
     ul.appendChild(li);
